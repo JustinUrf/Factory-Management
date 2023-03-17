@@ -44,7 +44,7 @@ namespace Factory.Controllers
       Engineer thisEngineer = _db.Engineers
         .Include(engineer => engineer.Machine)
         .Include(engineer => engineer.JoinEntities)
-        .ThenInclude(join => join.license)
+        .ThenInclude(join => join.License)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
@@ -79,22 +79,22 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Addlicense(int id)
+    public ActionResult AddLicense(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineers => engineers.EngineerId == id);
-      ViewBag.licenseId = new SelectList(_db.licenses, "licenseId", "licenseDetails");
+      ViewBag.licenseId = new SelectList(_db.Licenses, "licenseId", "licenseDetails");
       return View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult Addlicense(Engineer engineer, int LicenseId)
+    public ActionResult AddLicense(Engineer engineer, int LicenseId)
     {
       #nullable enable
       EngineerLicense? joinEntity = _db.EngineerLicenses.FirstOrDefault(join => (join.LicenseId == LicenseId && join.EngineerId == engineer.EngineerId));
       #nullable disable
       if (joinEntity == null && LicenseId != 0)
       {
-        _db.Engineerlicenses.Add(new Engineerlicense() { licenseId = LicenseId, EngineerId = engineer.EngineerId });
+        _db.EngineerLicenses.Add(new EngineerLicense() { LicenseId = LicenseId, EngineerId = engineer.EngineerId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = engineer.EngineerId });
@@ -103,7 +103,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
-      EngineerLicense joinEntry = _db.EngineerLicenses
+      EngineerLicense joinEntry = _db.EngineerLicenses.FirstOrDefault(entry => entry.EngineerLiscenseId == joinId);
+      _db.EngineerLiscenses.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

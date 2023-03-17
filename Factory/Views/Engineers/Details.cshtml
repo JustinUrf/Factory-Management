@@ -18,12 +18,12 @@ else
 {
   <h4>This Engineer has the following licenses:</h4>
   <ul>
-    @foreach(Engineerlicense join in Model.JoinEntities)
+    @foreach(EngineerLicense join in Model.JoinEntities)
     {
-      <li>licenses: @join.license.licenseDetail</li>
+      <li>licenses: @join.License.licenseDetail</li>
       @using (Html.BeginForm("DeleteJoin", "Engineers"))
       {
-        @Html.Hidden("joinId", @join.EngineerlicenseId)
+        @Html.Hidden("joinId", @join.EngineerLicenseId)
         <input type="submit" value="Delete"/>
       }
     }
