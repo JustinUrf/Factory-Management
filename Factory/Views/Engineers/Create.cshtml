@@ -4,11 +4,19 @@
 
 @model Factory.Models.Engineer
 
-<h4>Add a new category</h4>
+<h4>Add a new Engineer</h4>
+
+<p><strong>NOTE:</strong> You need to have at least one Machine listed to create a new Engineer</p>
+<p>Go to @Html.ActionLink("this page", "Create", "License") to create a Course.</p>
+
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
-  <input type="submit" value="Add new Engineer" />
+<br><br>
+  @Html.LabelFor(model => model.Machine)
+  @Html.DropDownList("LicenseId")
+<br><br>
+  <input type="submit" value="Add new "/>
 }
-<p>@Html.ActionLink("Show all categories", "Index")</p>
+<p>@Html.ActionLink("Show all Engineers", "Index")</p>

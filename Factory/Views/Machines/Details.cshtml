@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine;
+@using Factory.Models;
+@using System.Collections.Generic;
+
+<h2>Machine Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.Engineers.Count == 0)
+{
+  <p>This Machine does not have anyone associated with it.</p>
+}
+else
+{
+  <h4>Engineers liscenced for this machine:</h4>
+  <ul>
+  @foreach(Engineer engineer in Model.Engineers)
+  {
+    string licenses = "";
+    @if(engineer.JoinEntities.Count == 0)
+    {
+      licenses = "This student does not have any Enrollments.";
+    }
+    else
+    {
+      List<string> licenseList = new List<string>();
+      @foreach(EngineerLicense join in engineer.JoinEntities)
+      {
+        licenseList.Add(join.License.LicenseDetail);
+      }
+      licenses = String.Join(", ", licenseList);
+    }
+    <li>@engineer.Name| Enrollments: @licenses</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to Machines", "Index")</p>
+<p>@Html.ActionLink("Edit Machines", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Add new Engineer", "Create", "Engineers")</p>
