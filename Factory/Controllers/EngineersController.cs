@@ -103,8 +103,8 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
-      EngineerLicense joinEntry = _db.EngineerLicenses.FirstOrDefault(entry => entry.EngineerLiscenseId == joinId);
-      _db.EngineerLiscenses.Remove(joinEntry);
+      EngineerLicense joinEntry = _db.EngineerLicenses.FirstOrDefault(entry => entry.EngineerLicenseId == joinId);
+      _db.EngineerLicenses.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
