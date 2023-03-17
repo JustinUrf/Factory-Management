@@ -40,39 +40,39 @@ namespace Factory.Migrations
                     b.ToTable("Engineers");
                 });
 
-            modelBuilder.Entity("Factory.Models.EngineerLiscence", b =>
+            modelBuilder.Entity("Factory.Models.Engineerlicense", b =>
                 {
-                    b.Property<int>("EngineerLiscenceId")
+                    b.Property<int>("EngineerlicenseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("EngineerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LiscenceId")
+                    b.Property<int>("licenseId")
                         .HasColumnType("int");
 
-                    b.HasKey("EngineerLiscenceId");
+                    b.HasKey("EngineerlicenseId");
 
                     b.HasIndex("EngineerId");
 
-                    b.HasIndex("LiscenceId");
+                    b.HasIndex("licenseId");
 
-                    b.ToTable("EngineerLiscences");
+                    b.ToTable("Engineerlicenses");
                 });
 
-            modelBuilder.Entity("Factory.Models.Liscence", b =>
+            modelBuilder.Entity("Factory.Models.license", b =>
                 {
-                    b.Property<int>("LiscenceId")
+                    b.Property<int>("licenseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("LiscenceDetail")
+                    b.Property<string>("licenseDetail")
                         .HasColumnType("longtext");
 
-                    b.HasKey("LiscenceId");
+                    b.HasKey("licenseId");
 
-                    b.ToTable("Liscences");
+                    b.ToTable("licenses");
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>
@@ -96,7 +96,7 @@ namespace Factory.Migrations
                         .HasForeignKey("MachineId");
                 });
 
-            modelBuilder.Entity("Factory.Models.EngineerLiscence", b =>
+            modelBuilder.Entity("Factory.Models.Engineerlicense", b =>
                 {
                     b.HasOne("Factory.Models.Engineer", "Engineer")
                         .WithMany()
@@ -104,18 +104,18 @@ namespace Factory.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Factory.Models.Liscence", "Liscence")
+                    b.HasOne("Factory.Models.license", "license")
                         .WithMany("JoinEntities")
-                        .HasForeignKey("LiscenceId")
+                        .HasForeignKey("licenseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Engineer");
 
-                    b.Navigation("Liscence");
+                    b.Navigation("license");
                 });
 
-            modelBuilder.Entity("Factory.Models.Liscence", b =>
+            modelBuilder.Entity("Factory.Models.license", b =>
                 {
                     b.Navigation("JoinEntities");
                 });

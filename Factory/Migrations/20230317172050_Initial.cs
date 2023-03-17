@@ -13,17 +13,17 @@ namespace Factory.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Liscences",
+                name: "licenses",
                 columns: table => new
                 {
-                    LiscenceId = table.Column<int>(type: "int", nullable: false)
+                    licenseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LiscenceDetail = table.Column<string>(type: "longtext", nullable: true)
+                    licenseDetail = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Liscences", x => x.LiscenceId);
+                    table.PrimaryKey("PK_licenses", x => x.licenseId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -64,41 +64,41 @@ namespace Factory.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "EngineerLiscences",
+                name: "Engineerlicenses",
                 columns: table => new
                 {
-                    EngineerLiscenceId = table.Column<int>(type: "int", nullable: false)
+                    EngineerlicenseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EngineerId = table.Column<int>(type: "int", nullable: false),
-                    LiscenceId = table.Column<int>(type: "int", nullable: false)
+                    licenseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EngineerLiscences", x => x.EngineerLiscenceId);
+                    table.PrimaryKey("PK_Engineerlicenses", x => x.EngineerlicenseId);
                     table.ForeignKey(
-                        name: "FK_EngineerLiscences_Engineers_EngineerId",
+                        name: "FK_Engineerlicenses_Engineers_EngineerId",
                         column: x => x.EngineerId,
                         principalTable: "Engineers",
                         principalColumn: "EngineerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EngineerLiscences_Liscences_LiscenceId",
-                        column: x => x.LiscenceId,
-                        principalTable: "Liscences",
-                        principalColumn: "LiscenceId",
+                        name: "FK_Engineerlicenses_licenses_licenseId",
+                        column: x => x.licenseId,
+                        principalTable: "licenses",
+                        principalColumn: "licenseId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EngineerLiscences_EngineerId",
-                table: "EngineerLiscences",
+                name: "IX_Engineerlicenses_EngineerId",
+                table: "Engineerlicenses",
                 column: "EngineerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EngineerLiscences_LiscenceId",
-                table: "EngineerLiscences",
-                column: "LiscenceId");
+                name: "IX_Engineerlicenses_licenseId",
+                table: "Engineerlicenses",
+                column: "licenseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Engineers_MachineId",
@@ -109,13 +109,13 @@ namespace Factory.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EngineerLiscences");
+                name: "Engineerlicenses");
 
             migrationBuilder.DropTable(
                 name: "Engineers");
 
             migrationBuilder.DropTable(
-                name: "Liscences");
+                name: "licenses");
 
             migrationBuilder.DropTable(
                 name: "Machines");

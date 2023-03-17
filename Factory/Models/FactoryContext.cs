@@ -6,8 +6,8 @@ namespace Factory.Models
   {
     public DbSet<Engineer> Engineers { get; set; }
     public DbSet<Machine> Machines { get; set; }
-    public DbSet<Liscence> Liscences { get; set; }
-    public DbSet<EngineerLiscence> EngineerLiscences { get; set; }
+    public DbSet<license> licenses { get; set; }
+    public DbSet<EngineerLicense> Engineerlicenses { get; set; }
     public FactoryContext(DbContextOptions options) : base(options) { }
 
   }

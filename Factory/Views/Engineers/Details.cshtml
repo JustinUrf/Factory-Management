@@ -16,14 +16,14 @@
 }
 else
 {
-  <h4>This Engineer has the following Liscences:</h4>
+  <h4>This Engineer has the following licenses:</h4>
   <ul>
-    @foreach(EngineerLiscence join in Model.JoinEntities)
+    @foreach(Engineerlicense join in Model.JoinEntities)
     {
-      <li>Liscences: @join.Liscence.LiscenceDetail</li>
+      <li>licenses: @join.license.licenseDetail</li>
       @using (Html.BeginForm("DeleteJoin", "Engineers"))
       {
-        @Html.Hidden("joinId", @join.EngineerLiscenceId)
+        @Html.Hidden("joinId", @join.EngineerlicenseId)
         <input type="submit" value="Delete"/>
       }
     }
@@ -32,5 +32,5 @@ else
 
 <p>@Html.ActionLink("Back to Engineers", "Index")</p>
 <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add a Liscencse", "AddLiscence", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Add a Liscencse", "Addlicense", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete an", "Delete", new { id = Model.EngineerId })</p>

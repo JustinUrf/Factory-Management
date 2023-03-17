@@ -44,7 +44,7 @@ namespace Factory.Controllers
       Engineer thisEngineer = _db.Engineers
         .Include(engineer => engineer.Machine)
         .Include(engineer => engineer.JoinEntities)
-        .ThenInclude(join => join.Liscence)
+        .ThenInclude(join => join.license)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
@@ -52,7 +52,58 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Details")
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Details");
+      return View(thisEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Engineer engineer)
+    {
+      _db.Engineers.Update(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Addlicense(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineers => engineers.EngineerId == id);
+      ViewBag.licenseId = new SelectList(_db.licenses, "licenseId", "licenseDetails");
+      return View(thisEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult Addlicense(Engineer engineer, int LicenseId)
+    {
+      #nullable enable
+      EngineerLicense? joinEntity = _db.EngineerLicenses.FirstOrDefault(join => (join.LicenseId == LicenseId && join.EngineerId == engineer.EngineerId));
+      #nullable disable
+      if (joinEntity == null && LicenseId != 0)
+      {
+        _db.Engineerlicenses.Add(new Engineerlicense() { licenseId = LicenseId, EngineerId = engineer.EngineerId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      EngineerLicense joinEntry = _db.EngineerLicenses
     }
   }
 }
