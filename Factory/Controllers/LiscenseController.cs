@@ -35,6 +35,7 @@ namespace Factory.Controllers
       return View();
     }
 
+    [HttpPost]
     public ActionResult Create(License license)
     {
       _db.Licenses.Add(license);
