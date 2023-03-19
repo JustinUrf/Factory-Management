@@ -23,7 +23,7 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineDetails");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Details");
       return View();
     }
 

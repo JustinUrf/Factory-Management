@@ -46,7 +46,7 @@ namespace Factory.Controllers
     public ActionResult AddEngineer(int id)
     {
       License thisLicense = _db.Licenses.FirstOrDefault(licenses => licenses.LicenseId == id);
-      ViewBag.LicenseId = new SelectList(_db.Engineers, "EngineerId", "Name");
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(thisLicense);
     }
 
