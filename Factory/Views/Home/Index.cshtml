@@ -2,11 +2,37 @@
   Layout = "_Layout";
 }
 
+@using Factory.Models
 
 <div class="jumbotron text-center">
   <h1 class="display-2">Welcome Manager</h1>
   <p class="lead"></p>
   <hr class="my-4">
+</div>
+<h4>Licenses for all machines!</h4>
+<div>
+  @if (Model["licenses"].Length == 0)
+  {
+    <p>No licenses have been added yet!</p>
+  } 
+  <ul>
+    @foreach (License theseLicenses in Model["licenses"])
+    {
+      <li>@Html.ActionLink(@theseLicenses.LicenseDetail, "Details", "Licenses", new { id = @theseLicenses.LicenseId})</li>
+    }
+  </ul>
+
+  <h4>Engineers</h4>
+  @if (Model["engineers"].Length == 0)
+  {
+    <p>No Engineers have been added yet!</p>
+  } 
+  <ul>
+    @foreach (Engineer engineer in Model["engineers"])
+    {
+      <li>@Html.ActionLink(@engineer.Name, "Details", "Items", new { id = @engineer.EngineerId})</li>
+    }
+  </ul>
 </div>
 
 
