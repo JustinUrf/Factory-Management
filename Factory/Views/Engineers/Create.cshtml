@@ -6,16 +6,10 @@
 
 <h4>Add a new Engineer</h4>
 
-<p><strong>NOTE:</strong> You need to have at least one Machine listed to create a new Engineer</p>
-<p>Go to @Html.ActionLink("this page", "Create", "Machine") to create a Machine.</p>
-
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
-<br><br>
-  @Html.LabelFor(model => model.Machine)
-  @Html.DropDownList("MachineId")
 <br><br>
   <input type="submit" value="Add new Machine"/>
 }

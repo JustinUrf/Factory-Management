@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+// using System.Collections.Generic;
 
-namespace Factory.Models
-{
-  public class Machine
-  {
-    public int MachineId { get; set; }
-    public string Details { get; set; }
-    public List<Engineer> Engineers { get; set; }
-  }
-}
+// namespace Factory.Models
+// {
+//   public class Machine
+//   {
+//     public int MachineId { get; set; }
+//     public string Details { get; set; }
+//     public List<Engineer> Engineers { get; set; }
+//   }
+// }

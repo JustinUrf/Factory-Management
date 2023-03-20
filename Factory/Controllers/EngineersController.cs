@@ -17,23 +17,17 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineer> model = _db.Engineers.Include(engineer => engineer.Machine).ToList();
-      return View(model);
+      return View(_db.Engineers.ToList());
     }
 
     public ActionResult Create()
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Details");
       return View();
     }
 
     [HttpPost]
     public ActionResult Create(Engineer engineer)
     {
-      if (engineer.MachineId == 0)
-      {
-        return RedirectToAction("Create");
-      }
       _db.Engineers.Add(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -42,7 +36,6 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
-        .Include(engineer => engineer.Machine)
         .Include(engineer => engineer.JoinEntities)
         .ThenInclude(join => join.License)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
@@ -52,7 +45,6 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Details");
       return View(thisEngineer);
     }
 
@@ -82,7 +74,7 @@ namespace Factory.Controllers
     public ActionResult AddLicense(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineers => engineers.EngineerId == id);
-      ViewBag.licenseId = new SelectList(_db.Licenses, "licenseId", "licenseDetails");
+      ViewBag.licenseId = new SelectList(_db.Licenses, "LicenseId", "LicenseDetail");
       return View(thisEngineer);
     }
 
