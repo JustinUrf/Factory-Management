@@ -54,11 +54,12 @@ namespace Factory.Controllers
     public ActionResult AddEngineer(License license, int engineerId)
     {
       #nullable enable
-      EngineerLicense? joinEnttiy = _db.EngineerLicenses.FirstOrDefault(join => (join.EngineerId == engineerId && join.LicenseId == license.LicenseId));
+      EngineerLicense? joinEntity = _db.EngineerLicenses.FirstOrDefault(join => (join.EngineerId == engineerId && join.LicenseId == license.LicenseId));
       #nullable disable
-      if (joinEnttiy == null && engineerId != 0)
+      if (joinEntity == null && engineerId != 0)
       {
         _db.EngineerLicenses.Add(new EngineerLicense() { EngineerId = engineerId, LicenseId = license.LicenseId });
+        _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = license.LicenseId });
     }

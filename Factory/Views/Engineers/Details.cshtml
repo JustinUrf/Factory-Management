@@ -8,11 +8,13 @@
 <h2>Engineer Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>  
-<h3>@Html.DisplayNameFor(model => model.Machine): @Html.DisplayFor(model => model.Machine.Details)</h3>
+<h3>Speciality: @Html.DisplayFor(model => model.Machine.Details)</h3>
+
+<hr>
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <p>This studenthas not enrolled in anything yet!</p>
+  <p>This Engineer has no licenses!</p>
 }
 else
 {
