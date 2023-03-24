@@ -22,7 +22,7 @@ This website is a application that allows an imaginary owner of a Hair Salon to 
 3. Create a file called ``appsettings.json`` which will house these lines: 
 ``{"ConnectionStrings": {"DefaultConnection":"Server=localhost;Port=3306;database=[YOUR_DATA_BASE_HERE];uid=[YOUR_USER_ID_HERE];pwd=[YOUR_PASSWORD_HERE];"}}`` This will allow our website to connect with our local SQL database.
 4. a. Database is constructed using ``EntityFrameWorkCore.Design`` and its migration feature which should be installed during the ``dotnet build`` command : 
-5. b. Use the ``dotnet ef migrations add Initial`` command, followed with ``dotnet ef migrations add Initial`` in your terminal while in the ``Factory`` directory.
+5. b. Use the ``dotnet ef database update`` command. As the Migration files are included in the repo, you do not need to ``dotnet ef migrations add "..."``
 6. After running ``dotnet run``, application should be hosted to your local host in web browser.
 
 

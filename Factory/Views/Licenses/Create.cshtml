@@ -5,6 +5,7 @@
 @model Factory.Models.License
 
 <h4>Add a new License</h4>
+<p>@Html.ValidationMessageFor(model => model.LicenseDetail, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 
 @using (Html.BeginForm())
 {

@@ -38,6 +38,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(License license)
     {
+      if(!ModelState.IsValid)
+      {
+        return View(license);
+      }
       _db.Licenses.Add(license);
       _db.SaveChanges();
       return RedirectToAction("Index");
